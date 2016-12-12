@@ -8,12 +8,27 @@ target pngtarget pdftarget vtarget acrtarget: notarget
 
 ##################################################################
 
+# Files to put in github
+
+Sources += $(wildcard *.R)
+Sources += $(wildcard *.pl)
+Sources += $(wildcard *.bugtmp)
+
 ######################################################################
 
-### Makestuff
+## Making bug files from templates
 
-## Change this name to download a new version of the makestuff directory
-# Makefile: start.makestuff
+.PRECIOUS: hybrid%.autobug
+hybrid%.autobug: hybrid.bugtmp lagchain.pl
+	$(RM) $@
+	$(PUSHSTAR)
+	$(READONLY)
+
+##################################################################
+
+## Data wrangling
+
+######################################################################
 
 Sources += Makefile .gitignore README.md stuff.mk LICENSE.md
 include stuff.mk
