@@ -53,6 +53,7 @@ hybrid%.autobug: hybrid.bugtmp lagchain.pl
 	$(PUSHSTAR)
 	$(READONLY)
 
+## Fitting
 .PRECIOUS: %.hybrid.Rout
 %.hybrid.Rout: hybrid.params.Rout %.scen.Rout hybrid5.autobug hybrid.R
 	$(run-R)
@@ -71,6 +72,7 @@ hi%.autobug: hi.bugtmp lagchain.pl
 	$(PUSHSTAR)
 	$(READONLY)
 
+## Fitting
 .PRECIOUS: %.hi.Rout
 %.hi.Rout: hi.params.Rout %.scen.Rout %.int.Rout hybrid5.autobug hi.R
 	$(run-R)
@@ -78,8 +80,6 @@ hi%.autobug: hi.bugtmp lagchain.pl
 ##################################################################
 
 ### Calculate estimation quantiles for output to NIH
-
-T5.NIH.hi.est.out: est.R
 
 .PRECIOUS: %.est.Rout
 %.est.Rout: %.Rout est.R
@@ -97,9 +97,6 @@ T5.NIH.hi.est.out: est.R
 ## Hybrid-interventions
 .PRECIOUS: %.hip.Rout
 %.hip.Rout: %.hi.est.Rout forecastPlot.Rout project.R
-	$(run-R)
-
-T2S1.hip.Rout: T2S1.hi.est.Rout forecastPlot.Rout project.R
 	$(run-R)
 
 ######################################################################
