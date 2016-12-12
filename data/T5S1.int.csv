@@ -1,0 +1,11 @@
+type, startWeek, new
+ETU, 20, 60
+ETU, 22, 55
+ETU, 24, 35 
+ETU, 27, 20 
+ETU, 29, 30 
+Burial, 21, 1
+Tracing, 20, 1
+Tracing, 26, 0.5
+ETU, 35, 95
+ETU, 36, 50
