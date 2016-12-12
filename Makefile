@@ -4,7 +4,7 @@
 
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: T2S1.hi.Rout 
+target pngtarget pdftarget vtarget acrtarget: T2S1.hip.Rout 
 
 ##################################################################
 
@@ -60,8 +60,6 @@ hybrid%.autobug: hybrid.bugtmp lagchain.pl
 T1S1.hybrid.Rout: hybrid.params.Rout T1S1.scen.Rout hybrid5.autobug hybrid.R
 	$(run-R)
 
-T2S1.hybrid.Rout: hybrid.R
-
 ######################################################################
 
 ## Hybrid-intervention fitting model
@@ -77,7 +75,31 @@ hi%.autobug: hi.bugtmp lagchain.pl
 %.hi.Rout: hi.params.Rout %.scen.Rout %.int.Rout hybrid5.autobug hi.R
 	$(run-R)
 
-T2S1.hi.Rout: hi.params.Rout T2S1.scen.Rout T2S1.int.Rout hybrid5.autobug hi.R
+##################################################################
+
+### Calculate estimation quantiles for output to NIH
+
+T5.NIH.hi.est.out: est.R
+
+.PRECIOUS: %.est.Rout
+%.est.Rout: %.Rout est.R
+	$(run-R)
+
+##################################################################
+
+### Look at projections 
+
+## Hybrid
+.PRECIOUS: %.project.Rout
+%.project.Rout: %.hybrid.est.Rout forecastPlot.Rout project.R
+	$(run-R)
+
+## Hybrid-interventions
+.PRECIOUS: %.hip.Rout
+%.hip.Rout: %.hi.est.Rout forecastPlot.Rout project.R
+	$(run-R)
+
+T2S1.hip.Rout: T2S1.hi.est.Rout forecastPlot.Rout project.R
 	$(run-R)
 
 ######################################################################
