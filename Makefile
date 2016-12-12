@@ -8,13 +8,6 @@ target pngtarget pdftarget vtarget acrtarget: T2S1.hip.Rout
 
 ##################################################################
 
-### Crib (temporary)
-
-%: Latent_incidence_fitting/%
-	$(copy)
-
-######################################################################
-
 # Files to put in github
 
 Sources += $(wildcard *.R)
